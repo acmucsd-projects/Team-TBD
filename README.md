@@ -2,11 +2,11 @@
 The official ACM AI Team TBD repository.
 
 ## Table of Contents:
-- Requirements
-- Source
-- Datasets
-- Difficulties
-- Author Info
+- [Requirements](https://github.com/acmucsd-projects/fa23-ai-team-2/blob/main/README.md#requirements-)
+- [Source](https://github.com/acmucsd-projects/fa23-ai-team-2/edit/main/README.md#source)
+- [Datasets](https://github.com/acmucsd-projects/fa23-ai-team-2/edit/main/README.md#datasets)
+- [Difficulties](https://github.com/acmucsd-projects/fa23-ai-team-2/edit/main/README.md#difficulties)
+- [Author Info](https://github.com/acmucsd-projects/fa23-ai-team-2/edit/main/README.md#author-info)
 
 ## Requirements !!
 
