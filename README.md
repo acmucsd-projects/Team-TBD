@@ -2,6 +2,10 @@
 <p align="center">
   <img src="https://media.tenor.com/9CqTZoKN-KsAAAAC/loading-windows.gif" />
 </p>
+<p align="center">
+  <img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" />
+</p>
+https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif
 
 # Team TBD
 The official ACM AI Team TBD repository.
