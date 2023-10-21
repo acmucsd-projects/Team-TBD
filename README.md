@@ -1,3 +1,4 @@
+![](https://art.pixilart.com/eab99c6c66a7084.gif)
 # Team TBD
 The official ACM AI Team TBD repository.
 
