@@ -1,4 +1,7 @@
-![](https://art.pixilart.com/eab99c6c66a7084.gif)
+<!-- ![](https://art.pixilart.com/eab99c6c66a7084.gif) -->
+<p align="center">
+  <img src="https://media.tenor.com/9CqTZoKN-KsAAAAC/loading-windows.gif" />
+</p>
 # Team TBD
 The official ACM AI Team TBD repository.
 
