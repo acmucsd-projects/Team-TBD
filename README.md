@@ -18,8 +18,8 @@ The official ACM AI Team TBD repository.
 Refer to `requirements.txt` for the packages and dependencies.
 
 ## Instructions
-git clone https://github.com/acmucsd-projects/fa23-ai-team-2.git
-pip install -r requirements.txt
+> git clone https://github.com/acmucsd-projects/fa23-ai-team-2.git
+> pip install -r requirements.txt
 
 ## Source
 
