@@ -29,10 +29,10 @@ Refer to `requirements.txt` for the packages and dependencies.
 ## Difficulties
 
 ## Author Info
-- Mentor: Vincent Tu
-- Catherine Zhang
-- Aryaman Dayal
-- Hargen Zheng
-- Sia Patodia
-- Phillip Wu
-- Ryan Wong
+- Mentor: Vincent Tu [LinkedIn](https://www.linkedin.com/in/vincent-tu-422b18208/) | [GitHub](https://github.com/alckasoc)
+- Catherine Zhang [LinkedIn](https://www.linkedin.com/in/catherine-zhang-b6a86415a/) | [GitHub](https://github.com/caz002)
+- Aryaman Dayal [LinkedIn](https://www.linkedin.com/in/aryaman-dayal-a6a4b0214/) | [GitHub](https://github.com/aryamandayal)
+- Hargen Zheng [LinkedIn](https://www.linkedin.com/in/hargen-zheng-75540b218/) | [GitHub](https://github.com/hgnzheng)
+- Sia Patodia [LinkedIn](https://www.linkedin.com/in/sia-patodia-21a071200/) | [GitHub](https://github.com/siapatodia8)
+- Phillip Wu [GitHub](https://github.com/philliptwu)
+- Ryan Wong [LinkedIn](https://www.linkedin.com/in/ryanjmwong/) | [GitHub](https://github.com/RyanJWong)
