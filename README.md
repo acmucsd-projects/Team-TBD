@@ -6,29 +6,35 @@
 The official ACM AI Team TBD repository.
 
 ## Table of Contents:
-- [Requirements](https://github.com/acmucsd-projects/fa23-ai-team-2#requirements-)
-- [Instructions](https://github.com/acmucsd-projects/fa23-ai-team-2#instructions)
-- [Source](https://github.com/acmucsd-projects/fa23-ai-team-2#source)
-- [Datasets](https://github.com/acmucsd-projects/fa23-ai-team-2#datasets)
-- [Difficulties](https://github.com/acmucsd-projects/fa23-ai-team-2#difficulties)
-- [Author Info](https://github.com/acmucsd-projects/fa23-ai-team-2#author-info)
+- [Requirements](https://github.com/acmucsd-projects/Team-TBD#requirements-bangbang)
+- [Instructions](https://github.com/acmucsd-projects/Team-TBD#instructions-computer)
+- [Source](https://github.com/acmucsd-projects/Team-TBD#source-bulb)
+- [Datasets](https://github.com/acmucsd-projects/Team-TBD#datasets-hammer)
+- [Difficulties](https://github.com/acmucsd-projects/Team-TBD#difficulties-x)
+- [Author Info](https://github.com/acmucsd-projects/Team-TBD#author-info-trident)
 
-## Requirements !!
+## Requirements :bangbang:
 
 Refer to `requirements.txt` for the packages and dependencies.
 
-## Instructions
-> git clone https://github.com/acmucsd-projects/fa23-ai-team-2.git
+## Instructions :computer:
+Clone this repository to get started.
+```
+git clone https://github.com/acmucsd-projects/Team-TBD.git
+```
 
-> pip install -r requirements.txt
+To install the required packages for our project, run the following comment:
+```
+pip install -r requirements.txt
+```
 
-## Source
+## Source :bulb:
 
-## Datasets
+## Datasets :hammer:
 
-## Difficulties
+## Difficulties :x:
 
-## Author Info
+## Author Info :trident:
 - Mentor: Vincent Tu [LinkedIn](https://www.linkedin.com/in/vincent-tu-422b18208/) | [GitHub](https://github.com/alckasoc)
 - Catherine Zhang [LinkedIn](https://www.linkedin.com/in/catherine-zhang-b6a86415a/) | [GitHub](https://github.com/caz002)
 - Aryaman Dayal [LinkedIn](https://www.linkedin.com/in/aryaman-dayal-a6a4b0214/) | [GitHub](https://github.com/aryamandayal)
