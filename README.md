@@ -23,6 +23,11 @@ Clone this repository to get started.
 git clone https://github.com/acmucsd-projects/Team-TBD.git
 ```
 
+It's recommended to run our code in a virtual environment to make sure your package versions are not messed up. The following is the instruction to create a conda virtual environment for our project, where we use Python 3.9 -- a stable release:
+```
+conda create -n mbti python=3.9
+```
+
 To install the required packages for our project, run the following comment:
 ```
 pip install -r requirements.txt
