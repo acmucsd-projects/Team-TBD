@@ -33,9 +33,12 @@ To install the required packages for our project, run the following comment:
 pip install -r requirements.txt
 ```
 
+To set up the dataset for our project, click the link under [Datasets](https://github.com/acmucsd-projects/Team-TBD#datasets-hammer). Then, move the datasets into `input` folder of this repository.
+
 ## Source :bulb:
 
 ## Datasets :hammer:
+[(MBTI) Myers-Briggs Personality Type Dataset](https://www.kaggle.com/datasets/datasnaek/mbti-type/data)
 
 ## Difficulties :x:
 
