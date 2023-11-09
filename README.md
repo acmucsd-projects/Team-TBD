@@ -35,6 +35,20 @@ pip install -r requirements.txt
 
 To set up the dataset for our project, click the link under [Datasets](https://github.com/acmucsd-projects/Team-TBD#datasets-hammer). Then, move the datasets into `input` folder of this repository.
 
+Please make sure to push your work to GitHub so everyone on our team knows what's been updated. The following is the instruction of how to push your work to github.
+```
+# Open your terminal and change directory to the project folder.
+# Type the following commands.
+# Get the files that other people have changed
+Git pull
+# add files to commit to github
+Git add .
+# commit the files with a message
+Git commit -m “<message>”
+# push the files to the main branch
+Git push
+```
+
 ## Source :bulb:
 
 ## Datasets :hammer:
