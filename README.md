@@ -9,9 +9,9 @@ The official ACM AI Team TBD repository.
 ## Table of Contents:
 - [Requirements](https://github.com/acmucsd-projects/Team-TBD#requirements-bangbang)
 - [Instructions](https://github.com/acmucsd-projects/Team-TBD#instructions-computer)
-- [Source](https://github.com/acmucsd-projects/Team-TBD#source-bulb)
 - [Datasets](https://github.com/acmucsd-projects/Team-TBD#datasets-hammer)
 - [Difficulties](https://github.com/acmucsd-projects/Team-TBD#difficulties-x)
+- [Reflection](https://github.com/acmucsd-projects/Team-TBD#source-bulb)
 - [Author Info](https://github.com/acmucsd-projects/Team-TBD#author-info-trident)
 
 ## Requirements :bangbang:
@@ -36,26 +36,16 @@ pip install -r requirements.txt
 
 To set up the dataset for our project, click the link under [Datasets](https://github.com/acmucsd-projects/Team-TBD#datasets-hammer). Then, move the datasets into `input` folder of this repository.
 
-Please make sure to push your work to GitHub so everyone on our team knows what's been updated. The following is the instruction of how to push your work to github.
-```
-# Open your terminal and change directory to the project folder.
-# Type the following commands.
-# Get the files that other people have changed
-Git pull
-# add files to commit to github
-Git add .
-# commit the files with a message
-Git commit -m “<message>”
-# push the files to the main branch
-Git push
-```
-
-## Source :bulb:
-
 ## Datasets :hammer:
 [(MBTI) Myers-Briggs Personality Type Dataset](https://www.kaggle.com/datasets/datasnaek/mbti-type/data)
 
 ## Difficulties :x:
+Since we are students, we had a lot of classwork to do and exams coming up while we were doing this project, making scheduling times to work on it and meet together very challenging. Most of us were brand new to these new machine learning tools so we had to learn a lot as we went through it. The datasets that were provided online were very skewed for the I personality types, making the model overfitted and giving bad accuracy initially.
+
+## Reflection :bulb:
+We believe our current project could be further developed into making a more responsive, personalized chatbot. We had trouble making progress on the project due to scheduling conflicts, and having multiple meetings a week proved difficult. We believe future projects could benefit from smaller group sizes or groups based on similar interests.
+
+Also, we could've tried to RoBERTa model, which was trained on a larger set of text corpus -- this might give us a better training result.
 
 ## Author Info :trident:
 - Mentor: Vincent Tu [LinkedIn](https://www.linkedin.com/in/vincent-tu-422b18208/) | [GitHub](https://github.com/alckasoc)
