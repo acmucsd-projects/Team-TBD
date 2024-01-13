@@ -13,19 +13,11 @@ import string
 from nltk.stem.porter import *
 from data_structures import *
 
-def get_wordCounts(data):
-    wordCount = defaultdict(int)
-    punctuation = set(string.punctuation)
-    stemmer = PorterStemmer()
-    for type, post in data:
-        r = ''.join(c for c in post.lower() if not c in punctuation)
-        for w in r.split():
-            w = stemmer.stem(w)
-            wordCount[w] += 1
-    counts = [(wordCount[w], w) for w in wordCount]
-    counts.sort()
-    counts.reverse()
-    return counts
+def mbti_list(df):
+    """
+    Return a list of 16 MBTI personality types.
+    """
+    return list(set(df['type']))
 
 def mbti_dist_plot(df):
     """
@@ -36,6 +28,43 @@ def mbti_dist_plot(df):
     count_df = pd.DataFrame(df_counts.index,df_counts.values).reset_index()
     count_df.columns = ['count', 'type']
     st.bar_chart(data=count_df, x='type', y='count')
+
+def process_df(df, remove_special=True):
+    # Change to lowercase
+    df['posts'] = df['posts'].apply(lambda x: x.lower())
+
+    #Change case => lowercase
+    df["posts"] = df["posts"].apply(lambda x: x.lower())
+
+    #Remove acronyms of personality types within text, for accrate prediction with unknown data
+    if remove_special:
+        pers_types = ['INFP' ,'INFJ', 'INTP', 'INTJ', 'ENTP', 'ENFP', 'ISTP' ,'ISFP' ,'ENTJ', 'ISTJ','ENFJ', 'ISFJ' ,'ESTP', 'ESFP' ,'ESFJ' ,'ESTJ']
+        pers_types = [p.lower() for p in pers_types]
+        p = re.compile("(" + "|".join(pers_types) + ")")
+
+    #Substitute hyperlinks with space
+    df["posts"] = df["posts"].apply(lambda x: re.sub(r'https?:\/\/.*?[\s+]', '', x.replace("|"," ") + " "))
+    df["posts"] = df["posts"].apply(lambda x: re.sub(r'https', '', x.replace("|"," ") + " "))
+
+    # Substitute punctuations except EOS characters
+        #Substitute all punctuation except EOS characters
+    df["posts"] = df["posts"].apply(lambda x: re.sub(r'\.', ' EOSTokenDot ', x + " "))
+    df["posts"] = df["posts"].apply(lambda x: re.sub(r'\?', ' EOSTokenQuest ', x + " "))
+    df["posts"] = df["posts"].apply(lambda x: re.sub(r'!', ' EOSTokenExs ', x + " "))
+    df["posts"] = df["posts"].apply(lambda x: re.sub(r'[\.+]', ".",x))  #remove punctuation
+    df["posts"] = df["posts"].apply(lambda x: re.sub(r'[^\w\s]','',x))  #avoid multiple full stops
+
+    #Remove Numeric + Spl chars
+    df["posts"] = df["posts"].apply(lambda x: re.sub(r'[^a-zA-Z\s]','',x))
+
+    #Remove multiple letters
+    df["posts"] = df["posts"].apply(lambda x: re.sub(r'([a-z])\1{2,}[\s|\w]*','',x))
+
+    #Keep words within acceptable range (min letter 3, max 30)
+    df["posts"] = df["posts"].apply(lambda x: re.sub(r'(\b\w{0,3})?\b','',x))
+    df["posts"] = df["posts"].apply(lambda x: re.sub(r'(\b\w{30,1000})?\b','',x))
+    return df
+
 
 def process_input(input_text, tokenizer, remove_special=True):
     """
@@ -85,4 +114,22 @@ def process_input(input_text, tokenizer, remove_special=True):
     }
 
 def label_mbti(mbti):
+    """
+    Return the integer represeting the MBTI type in the utility data structure.
+    """
     return MBTI_TYPES.index(mbti)
+
+def label_mbti(df):
+    """
+    Label MBTI types in one of 0-15 integers in the data frame.
+    """
+    df['label'] = df['type'].apply(label_mbti)
+
+def MBTIDatasetMapFunction(input_ids, attn_masks, labels):
+    """
+    Utility function to map the dataset.
+    """
+    return {
+        'input_ids': input_ids,
+        'attention_mask': attn_masks
+    }, labels

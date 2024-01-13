@@ -1,82 +1,82 @@
-import dataprocessing as dp
-import tokenizer
-import padding as pad
-import datasetTensors as dt
-import model
-import train_model as tm
-import numpy as np
-import pandas as pd
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-import nltk
-from nltk.corpus import stopwords
-from collections import Counter
-import string
-import re
-import seaborn as sns
-from tqdm import tqdm
+"""
+ACM AI Project Team: TBD
+This file contains function calls to train the model.
+"""
+# Import packages
 import matplotlib.pyplot as plt
-from torch.utils.data import TensorDataset, DataLoader
-from sklearn.model_selection import train_test_split
+import pandas as pd
+import numpy as np
+from tqdm.auto import tqdm
+import tensorflow as tf
+from transformers import BertTokenizer
+from transformers import TFBertModel
+import re
+
+# Import utility functions
+from util import *
+from tokenization import *
+from model import *
+from train_model import *
 
 
 if __name__ == "__main__":
 
-    is_cuda = torch.cuda.is_available()
-
-    if is_cuda:
-        device = torch.device('cuda')
-        print("GPU is available")
-    else:
-        device = torch.device('cpu')
-        print("GPU not available, CPU used")
-
-    file_path = "input/mbti_1.csv"
+    file_path = "../input/mbti_1.csv"
 
     # load the data
-    df = dp.load_data(file_path)
+    df = pd.read_csv(file_path)
 
     # process the data
-    df = dp.process(df, remove_special=True)
-    df = dp.minWordBenchmark(df)
+    df.process_df(df, remove_special=True)
+    
+    # Load BERT tokenizer
+    tokenizer = get_tokenizer()
+    
+    # Mask input
+    X_input_ids = np.zeros((len(df), 256))
+    X_attn_masks = np.zeros((len(df), 256))
+    
+    # Generate embedded input data
+    X_input_ids, X_attn_masks = tokenize_input(df, X_input_ids, X_attn_masks, tokenizer)
+    
+    # Encode MBTI labels
+    labels = np.zeros((len(df), 16))
+    labels[np.arange(len(df)), df['label'].values] = 1
+    
+    # Generate and map dataset for training
+    dataset = tf.data.Dataset.from_tensor_slices((X_input_ids, X_attn_masks, labels))
+    dataset = dataset.map(MBTIDatasetMapFunction)
+    
+    # Shuffle the dataset and generate batches, each with 16 training examples
+    dataset = dataset.shuffle(10000).batch(16, drop_remainder=True)
 
-    # Train test split
-    X, y = df['posts'].values, df['type'].values
+    # Use 80/20 train-validation split
+    p = 0.8
+    batch_size = 16
+    train_size = int((len(df)//batch_size)*p)
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y)
-   
-    # Tokenize
-    X_train, y_train, X_test, y_test, vocab = tokenizer.tokenize(X_train, y_train, X_test, y_test)
+    # Generate train and validation data
+    train_dataset = dataset.take(train_size)
+    val_dataset = dataset.skip(train_size)
 
+    # Obtain the pretrained BERT model
+    bert_model = load_BERT()
 
-    X_train_pad = pad.padding_(X_train, 500)
-    X_test_pad = pad.padding_(X_test, 500)
+    # Obtain the customized model
+    model = generate_model(bert_model)
 
-    y_train = y_train.astype(int)
-    y_test = y_test.astype(int)
+    # Get optimizer, loss function, and accuracy metric
+    learning_rate = 5e-5
+    decay = 1e-6
+    optim = tf.keras.optimizers.legacy.Adam(learning_rate=5e-5, decay=1e-6)
+    loss_func = tf.keras.losses.CategoricalCrossentropy()
+    acc = tf.keras.metrics.CategoricalAccuracy('accuracy')
 
-    # convert to tensors
-    batch_size = 50
-    train_loader, valid_loader = dt.convertTensor(X_train_pad, X_test_pad, y_train, y_test, batch_size)
+    # Compile the model
+    model.compile(optimizer=optim, loss=loss_func, metrics=[acc])
 
-    no_layers = 2
-    vocab_size = len(vocab) + 1 # extra 1 for padding
-    embedding_dim = 80
-    output_dim = 1
-    hidden_dim = 256
+    # Train the model
+    hist = model_train(model, train_dataset, val_dataset, epoch=17)
 
-    # model
-    model = model.MBTIRNN(no_layers, vocab_size, hidden_dim, embedding_dim, drop_prob=0.5)
-
-    model.to(device)
-
-    print(model)
-
-    lr = 0.005
-
-    criterion = nn.CrossEntropyLoss()
-
-    optimizer = torch.optim.Adam(model.parameters(), lr=lr)
-
-    tm.runEpochs(model, batch_size, train_loader, criterion, optimizer, valid_loader, device)
+    # Save the trained model
+    save_model(model, "MBTI_model")
