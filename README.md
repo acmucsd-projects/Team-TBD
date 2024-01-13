@@ -1,6 +1,7 @@
-<p align="center">
+<!-- <p align="center">
   <img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" />
-</p>
+</p> -->
+![Waiting for Prediction](/img/Demo-2.png)
 
 # Team TBD
 The official ACM AI Team TBD repository.
